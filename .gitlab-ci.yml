@@ -9,7 +9,7 @@ sync_with_github:
       git fetch origin
       git checkout -B "$CI_COMMIT_REF_NAME" "origin/$CI_COMMIT_REF_NAME"
       echo "Checked out branch: $(git branch --show-current)"
-    git remote add github "https://${GITHUB_TOKEN}@github.com/AmanDevani/aman-portfolio-nextjs-web.git"
+      git remote add github "https://${GITHUB_TOKEN}@github.com/AmanDevani/aman-portfolio-nextjs-web.git"
       git push github "$CI_COMMIT_REF_NAME:$CI_COMMIT_REF_NAME"
   only:
     - branches
