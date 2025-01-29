@@ -5,8 +5,8 @@ sync_with_github:
   stage: sync
   script:
     - echo "Syncing branch $CI_COMMIT_REF_NAME to GitHub"
-    - git config --global user.email "your-email@example.com"
-    - git config --global user.name "Your GitHub Username"
+    - git config --global user.email "amandevani25@gmail.com"
+    - git config --global user.name "AmanDevani"
     - git fetch origin
     - git checkout -B "$CI_COMMIT_REF_NAME" "origin/$CI_COMMIT_REF_NAME"
     - echo "Checked out branch: $(git branch --show-current)"
