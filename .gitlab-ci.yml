@@ -11,7 +11,6 @@ sync_with_github:
     - echo "Syncing branch $CI_COMMIT_REF_NAME to GitHub"
     - git fetch origin
     - git checkout -B "$CI_COMMIT_REF_NAME" "origin/$CI_COMMIT_REF_NAME"
-    - echo "Checked out branch: $(git branch --show-current)"
     - git remote remove github || true # Remove existing remote if any
     - git remote add github "https://${GITHUB_TOKEN}@github.com/AmanDevani/aman-portfolio-nextjs-web.git"
     - git push --force github "$CI_COMMIT_REF_NAME:$CI_COMMIT_REF_NAME"
