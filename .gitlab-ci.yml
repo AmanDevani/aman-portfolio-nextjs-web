@@ -1,21 +1,22 @@
 stages:
   - sync
 
-variables:
-  GIT_DEPTH: 0 # Ensure full clone for mirroring
-
-sync_to_github:
+sync_with_github:
   stage: sync
-  image: alpine:latest
   before_script:
-    - apk add --no-cache git
-    - git config --global user.name "Aman Devani"
     - git config --global user.email "amandevani25@gmail.com"
+    - git config --global user.name "Aman Devani"
+    - git remote -v
   script:
+    - echo "Syncing branch $CI_COMMIT_REF_NAME to GitHub"
+    - git fetch origin
+    - git checkout -B "$CI_COMMIT_REF_NAME" "origin/$CI_COMMIT_REF_NAME"
+    - echo "Checked out branch: $(git branch --show-current)"
+    - git remote remove github || true # Remove existing remote if any
     - git remote add github "https://${GITHUB_TOKEN}@github.com/AmanDevani/aman-portfolio-nextjs-web.git"
-    - git push --mirror github
-  rules:
-    - if: $CI_PIPELINE_SOURCE == 'push'
+    - git push --force github "$CI_COMMIT_REF_NAME:$CI_COMMIT_REF_NAME"
   only:
     - branches
     - merge_requests
+  variables:
+    GIT_DEPTH: 0
