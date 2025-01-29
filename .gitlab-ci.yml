@@ -8,7 +8,6 @@ sync_with_github:
     - git config --global user.name "Aman Devani"
     - git remote -v # Debug: Check existing remotes
   script:
-    - echo "Current Branch: ${CI_COMMIT_REF_NAME}"
     - git checkout "${CI_COMMIT_REF_NAME}"
     - git pull
     - git remote remove github || true
