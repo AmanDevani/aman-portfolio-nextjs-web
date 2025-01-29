@@ -12,7 +12,7 @@ sync_with_github:
     - git fetch --all
     - git checkout -B "$CI_COMMIT_REF_NAME" "origin/$CI_COMMIT_REF_NAME"
     - git remote remove github || true # Remove remote if it exists
-    - git remote add github "https://oauth2:${GITHUB_TOKEN}@github.com/AmanDevani/aman-portfolio-nextjs-web.git"
+    - git remote add github "https://${GITHUB_TOKEN}@github.com/AmanDevani/aman-portfolio-nextjs-web.git"
     - git remote -v # Debug: Ensure GitHub remote is set
     - git push --force github "$CI_COMMIT_REF_NAME:$CI_COMMIT_REF_NAME"
   only:
