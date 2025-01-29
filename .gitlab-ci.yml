@@ -4,14 +4,15 @@ stages:
 sync_with_github:
   stage: sync
   before_script:
-    - git config --global user.email "your-email@example.com"
-    - git config --global user.name "Your GitHub Username"
-    - git remote -v
+    - git config --global user.email "amandevani25@gmail.com"
+    - git config --global user.name "Aman Devani"
+    - git remote -v # Check existing remotes
   script:
     - echo "Syncing branch $CI_COMMIT_REF_NAME to GitHub"
     - git fetch --all
     - git checkout -B "$CI_COMMIT_REF_NAME" "origin/$CI_COMMIT_REF_NAME"
-    - git remote set-url github "https://oauth2:${GITHUB_TOKEN}@github.com/AmanDevani/aman-portfolio-nextjs-web.git"
+    - git remote remove github || true # Remove remote if it exists
+    - git remote add github "https://${GITHUB_TOKEN}@github.com/AmanDevani/aman-portfolio-nextjs-web.git"
     - git push --force github "$CI_COMMIT_REF_NAME:$CI_COMMIT_REF_NAME"
   only:
     - branches
