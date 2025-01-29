@@ -8,13 +8,10 @@ sync_with_github:
     - git config --global user.name "Aman Devani"
     - git remote -v # Debug: Check existing remotes
   script:
-    - echo "Syncing branch $CI_COMMIT_REF_NAME to GitHub"
-    - git fetch --all
-    - git checkout -B "$CI_COMMIT_REF_NAME" "origin/$CI_COMMIT_REF_NAME"
-    - git remote remove github || true # Remove remote if it exists
-    - git remote add github "https://${GITHUB_TOKEN}@github.com/AmanDevani/aman-portfolio-nextjs-web.git"
-    - git remote -v # Debug: Ensure GitHub remote is set
-    - git push --force github "$CI_COMMIT_REF_NAME:$CI_COMMIT_REF_NAME"
+    - git checkout "$CI_COMMIT_BRANCH"
+    - git pull
+    - git remote set-url origin "https://${GITHUB_TOKEN}@github.com/AmanDevani/aman-portfolio-nextjs-web.git"
+    - git push origin "$CI_COMMIT_BRANCH"
   only:
     - branches
     - merge_requests
