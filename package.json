@@ -9,12 +9,17 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "react": "^18",
-    "react-dom": "^18",
-    "next": "14.2.22"
+    "@ant-design/nextjs-registry": "1.0.2",
+    "@t3-oss/env-nextjs": "0.12.0",
+    "firebase": "11.0.2",
+    "next": "14.2.22",
+    "react": "18",
+    "react-dom": "18",
+    "zod": "3.24.2"
   },
   "devDependencies": {
-    "eslint": "^8",
-    "eslint-config-next": "14.2.22"
+    "eslint": "8.57.1",
+    "eslint-config-next": "14.2.22",
+    "sass": "1.86.0"
   }
 }

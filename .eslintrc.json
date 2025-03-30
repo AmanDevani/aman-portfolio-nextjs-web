@@ -1,3 +1,78 @@
 {
-  "extends": "next/core-web-vitals"
+  "parserOptions": {
+    "ecmaVersion": 2021,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "root": true,
+  "extends": [
+    "next",
+    "eslint:recommended",
+    "prettier",
+    "next/core-web-vitals",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended",
+    "plugin:react-hooks/recommended"
+  ],
+  "plugins": ["prettier", "react", "react-hooks"],
+  "rules": {
+    "no-console": "error",
+    "prefer-const": "warn",
+    "no-var": "warn",
+    "no-unused-vars": [
+      "warn",
+      {
+        "args": "all",
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_",
+        "caughtErrorsIgnorePattern": "^_"
+      }
+    ],
+    "object-shorthand": "warn",
+    "react/jsx-fragments": ["warn", "syntax"],
+    "react/jsx-filename-extension": [
+      "warn",
+      {
+        "extensions": ["jsx"]
+      }
+    ],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
+    "prettier/prettier": "warn",
+    "no-restricted-imports": [
+      "error",
+      {
+        "paths": [
+          {
+            "name": "lodash",
+            "message": "Please import from 'lodash/[package]' instead."
+          },
+          {
+            "name": "next/navigation",
+            "importNames": ["useRouter"],
+            "message": "Please import from 'nextjs-toploader/app' instead."
+          }
+        ],
+        "patterns": [
+          {
+            "group": ["!lodash/*"]
+          }
+        ]
+      }
+    ]
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
 }
