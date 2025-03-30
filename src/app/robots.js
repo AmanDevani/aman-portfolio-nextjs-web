@@ -11,6 +11,6 @@ export default function robots() {
             disallow: "/",
           }),
     },
-    sitemap: `${process.env.NEXT_PUBLIC_WEB_URL}/sitemap_index.xml`,
+    sitemap: `${process.env.NEXT_PUBLIC_WEB_URL}/sitemap.js`,
   };
 }

@@ -14,6 +14,7 @@ export const PERSONAL_INFO = {
   DESCRIPTION: `Welcome to my personal portfolio. A showcase of my skills, projects, and expertise in web development. Explore my journey and let's connect!`,
   OG_IMAGE: generateUrl("og-image.png"),
   ICONS: generateUrl("favicon.png"),
+  SITE_URL: env.NEXT_PUBLIC_WEB_URL,
 };
 
 export const ROUTES = {

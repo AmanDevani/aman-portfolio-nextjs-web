@@ -8,6 +8,8 @@ export async function generateMetadata() {
     icons: PERSONAL_INFO.ICONS,
     openGraph: {
       images: PERSONAL_INFO.OG_IMAGE,
+      url: PERSONAL_INFO.SITE_URL,
+      type: "website",
     },
     twitter: {
       card: "summary_large_image",
@@ -16,6 +18,21 @@ export async function generateMetadata() {
       index: true,
       follow: true,
     },
+    keywords: [
+      "aman devani",
+      "amandevani",
+      "aman devani portfolio",
+      "amandevaniportfolio",
+      "portfolio",
+      "portfolio website",
+      "portfoliowebsite",
+      "web developer",
+      "webdeveloper",
+      "web development",
+      "webdevelopment",
+      "full stack developer",
+      "fullstackdeveloper",
+    ],
   };
 }
 
