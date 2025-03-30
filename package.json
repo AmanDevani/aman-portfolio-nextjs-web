@@ -20,6 +20,8 @@
   "devDependencies": {
     "eslint": "8.57.1",
     "eslint-config-next": "14.2.22",
+    "eslint-config-prettier": "9.1.0",
+    "eslint-plugin-prettier": "5.2.1",
     "sass": "1.86.0"
   }
 }
