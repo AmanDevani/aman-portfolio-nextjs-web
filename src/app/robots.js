@@ -1,16 +1,16 @@
 export default function robots() {
-  const isProduction = process.env.NEXT_PUBLIC_ENV === "production";
+  const isProduction = process.env.NEXT_PUBLIC_ENV === 'production';
   return {
     rules: {
-      userAgent: "*",
+      userAgent: '*',
       ...(isProduction
         ? {
-            allow: "/",
+            allow: '/',
           }
         : {
-            disallow: "/",
+            disallow: '/',
           }),
     },
-    sitemap: `${process.env.NEXT_PUBLIC_WEB_URL}/sitemap.js`,
+    sitemap: `${process.env.NEXT_PUBLIC_WEB_URL}/sitemap.js.xml`,
   };
 }

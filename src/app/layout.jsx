@@ -1,4 +1,5 @@
-import { AntdRegistry } from "@ant-design/nextjs-registry";
+import { AntdRegistry } from '@ant-design/nextjs-registry';
+import '@/styles/main.scss';
 
 export default function RootLayout({ children }) {
   return (
