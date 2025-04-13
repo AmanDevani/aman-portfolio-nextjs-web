@@ -1,0 +1,113 @@
+@use 'sass:map' as *;
+@use 'sass:map';
+
+:root {
+  --color-neutral-0: #ffffff;
+  --color-neutral-100: #faf9fc;
+  --color-neutral-200: #f5f4f8;
+  --color-neutral-300: #e6e6e8;
+  --color-neutral-400: #cecdd1;
+  --color-neutral-500: #acabaf;
+  --color-neutral-600: #7b7980;
+  --color-neutral-700: #5e5c61;
+  --color-neutral-800: #39383b;
+  --color-neutral-900: #262527;
+  --color-neutral-1000: #000000;
+
+  --color-white-0: #ffffff;
+  --color-white-100: #ebebeb;
+  --color-white-200: #d0d0d0;
+
+  --color-black-0: #000000;
+  --color-black-100: #141414;
+  --color-black-200: #2e2e2e;
+}
+
+.dark {
+  --color-neutral-0: #111111;
+  --color-neutral-100: #262527;
+  --color-neutral-200: #39383b;
+  --color-neutral-300: #5e5c61;
+  --color-neutral-400: #7b7980;
+  --color-neutral-500: #acabaf;
+  --color-neutral-600: #cecdd1;
+  --color-neutral-700: #e6e6e8;
+  --color-neutral-800: #f5f4f8;
+  --color-neutral-900: #faf9fc;
+  --color-neutral-1000: #ffffff;
+
+  --color-white-0: #ffffff;
+  --color-white-100: #ebebeb;
+  --color-white-200: #d0d0d0;
+
+  --color-black-0: #000000;
+  --color-black-100: #141414;
+  --color-black-200: #2e2e2e;
+}
+
+$ant-design-colors: (
+  'body': (
+    100: var(--ant-color-bg-base),
+    200: var(--ant-color-bg-container),
+  ),
+  'border': var(--ant-color-border),
+  'primary': (
+    'background': var(--ant-color-primary),
+    'foreground': var(--ant-color-primary-text),
+  ),
+  'content': (
+    'primary': var(--ant-color-text),
+    'secondary': var(--ant-color-text-secondary),
+    'tertiary': var(--ant-color-text-tertiary),
+    'inverse-primary': var(--ant-color-fill),
+    'inverse-secondary': var(--ant-color-fill-secondary),
+    'inverse-tertiary': var(--ant-color-fill-tertiary),
+  ),
+  'success': (
+    'background': var(--ant-color-success),
+    'foreground': var(--ant-color-success-text),
+  ),
+  'warning': (
+    'background': var(--ant-color-warning),
+    'foreground': var(--ant-color-warning-text),
+  ),
+  'error': (
+    'background': var(--ant-color-error),
+    'foreground': var(--ant-color-error-text),
+  ),
+  'disabled': (
+    'foreground': var(--ant-color-text-disabled),
+  ),
+  'link': (
+    'default': var(--ant-color-link),
+  ),
+);
+
+$default-colors: (
+  'neutral': (
+    0: var(--color-neutral-0),
+    100: var(--color-neutral-100),
+    200: var(--color-neutral-200),
+    300: var(--color-neutral-300),
+    400: var(--color-neutral-400),
+    500: var(--color-neutral-500),
+    600: var(--color-neutral-600),
+    700: var(--color-neutral-700),
+    800: var(--color-neutral-800),
+    900: var(--color-neutral-900),
+    1000: var(--color-neutral-1000),
+  ),
+  'white': (
+    0: var(--color-white-0),
+    100: var(--color-white-100),
+    200: var(--color-white-200),
+  ),
+  'black': (
+    0: var(--color-black-0),
+    100: var(--color-black-100),
+    200: var(--color-black-200),
+  ),
+  'skeleton': var(--color-neutral-400),
+);
+
+$colors: map-merge($ant-design-colors, $default-colors);

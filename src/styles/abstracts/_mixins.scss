@@ -1,0 +1,45 @@
+@use 'functions' as *;
+
+@mixin respond-to($breakpoint, $type: 'max') {
+  @if $type == 'max' {
+    @media (max-width: #{breakpoint($breakpoint) - 1px}) {
+      @content;
+    }
+  } @else {
+    @media (min-width: #{breakpoint($breakpoint)}) {
+      @content;
+    }
+  }
+}
+
+@mixin generate-classes($prefix: '', $property, $value-map) {
+  @each $key, $value in $value-map {
+    @if $prefix != '' {
+      .#{$prefix}-#{$key} {
+        #{$property}: $value;
+      }
+    } @else {
+      .#{$key} {
+        #{$property}: $value;
+      }
+    }
+  }
+}
+
+@mixin line-clamp($lines: 1) {
+  overflow: hidden;
+  display: -webkit-box;
+  line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $lines;
+}
+
+@mixin focus-outline($offset: 1px) {
+  &:focus-visible {
+    outline: var(--ant-line-width-focus) solid var(--ant-color-primary-border);
+    outline-offset: $offset;
+    transition:
+      outline-offset 0s,
+      outline 0s;
+  }
+}

@@ -1,0 +1,46 @@
+@use '../abstracts/sizes' as *;
+@use '../abstracts/mixins' as *;
+@use 'sass:map';
+
+$paddings: map-merge(
+  (
+    auto: auto,
+  ),
+  $sizes
+);
+
+@include generate-classes(
+  $prefix: 'p',
+  $property: 'padding',
+  $value-map: $paddings
+);
+@include generate-classes(
+  $prefix: 'pl',
+  $property: 'padding-inline-start',
+  $value-map: $paddings
+);
+@include generate-classes(
+  $prefix: 'pr',
+  $property: 'padding-inline-end',
+  $value-map: $paddings
+);
+@include generate-classes(
+  $prefix: 'pt',
+  $property: 'padding-block-start',
+  $value-map: $paddings
+);
+@include generate-classes(
+  $prefix: 'pb',
+  $property: 'padding-block-end',
+  $value-map: $paddings
+);
+@include generate-classes(
+  $prefix: 'px',
+  $property: 'padding-inline',
+  $value-map: $paddings
+);
+@include generate-classes(
+  $prefix: 'py',
+  $property: 'padding-block',
+  $value-map: $paddings
+);

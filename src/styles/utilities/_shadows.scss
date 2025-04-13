@@ -1,0 +1,9 @@
+@use '../abstracts/shadows' as *;
+
+@each $shadow-position, $shadow-map in $shadows {
+  @each $shadow-name, $shadow in $shadow-map {
+    .shadow-#{$shadow-position}-#{$shadow-name} {
+      box-shadow: $shadow;
+    }
+  }
+}

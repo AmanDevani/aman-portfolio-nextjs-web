@@ -1,0 +1,46 @@
+@use '../abstracts/sizes' as *;
+@use '../abstracts/mixins' as *;
+@use 'sass:map';
+
+$margins: map-merge(
+  (
+    auto: auto,
+  ),
+  $sizes
+);
+
+@include generate-classes(
+  $prefix: 'm',
+  $property: 'margin',
+  $value-map: $margins
+);
+@include generate-classes(
+  $prefix: 'ml',
+  $property: 'margin-inline-start',
+  $value-map: $margins
+);
+@include generate-classes(
+  $prefix: 'mr',
+  $property: 'margin-inline-end',
+  $value-map: $margins
+);
+@include generate-classes(
+  $prefix: 'mt',
+  $property: 'margin-block-start',
+  $value-map: $margins
+);
+@include generate-classes(
+  $prefix: 'mb',
+  $property: 'margin-block-end',
+  $value-map: $margins
+);
+@include generate-classes(
+  $prefix: 'mx',
+  $property: 'margin-inline',
+  $value-map: $margins
+);
+@include generate-classes(
+  $prefix: 'my',
+  $property: 'margin-block',
+  $value-map: $margins
+);

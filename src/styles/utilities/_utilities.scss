@@ -1,0 +1,154 @@
+@use '../abstracts' as *;
+@use 'margins' as *;
+
+$overflows: (
+  'auto': auto,
+  'hidden': hidden,
+  'visible': visible,
+  'scroll': scroll,
+);
+
+@include generate-classes(
+  $prefix: '',
+  $property: 'display',
+  $value-map: (
+    'flex': flex,
+    'block': block,
+    'inline-block': inline-block,
+    'hidden': none,
+    'inline-flex': inline-flex,
+  )
+);
+
+@include generate-classes(
+  $prefix: 'overflow',
+  $property: 'overflow',
+  $value-map: $overflows
+);
+
+@include generate-classes(
+  $prefix: 'overflow-x',
+  $property: 'overflow-x',
+  $value-map: $overflows
+);
+
+@include generate-classes(
+  $prefix: 'overflow-y',
+  $property: 'overflow-y',
+  $value-map: $overflows
+);
+
+@include generate-classes(
+  $prefix: 'rounded',
+  $property: 'border-radius',
+  $value-map: (
+    'none': 0px,
+    'full': 999rem,
+    'sm': 0.8rem,
+    'md': 1.2rem,
+  )
+);
+
+@include generate-classes(
+  $prefix: 'cursor',
+  $property: 'cursor',
+  $value-map: (
+    'pointer': pointer,
+    'disabled': not-allowed,
+  )
+);
+
+@include generate-classes(
+  $prefix: 'whitespace',
+  $property: 'white-space',
+  $value-map: (
+    'break-spaces': break-spaces,
+  )
+);
+
+@include generate-classes(
+  $prefix: 'break',
+  $property: 'word-break',
+  $value-map: (
+    'words': break-word,
+  )
+);
+
+@for $i from 1 through 10 {
+  .line-clamp-#{$i} {
+    @include line-clamp($i);
+  }
+}
+
+.container {
+  @extend .mx-auto;
+  max-width: 192rem;
+}
+
+.wrapper-padding-inline {
+  padding-inline: size(12);
+
+  @include respond-to('lg') {
+    padding-inline: size(6);
+  }
+
+  @include respond-to('sm') {
+    padding-inline: size(4);
+  }
+}
+
+.wrapper-padding {
+  @extend .wrapper-padding-inline;
+
+  padding-block: size(6);
+
+  @include respond-to('sm') {
+    padding-block: size(4);
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.focus-outline {
+  @include focus-outline;
+}
+
+.text-link {
+  position: relative;
+  color: color('content', 'primary');
+
+  &:hover {
+    color: color('content', 'primary');
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 1px;
+    width: 0px;
+    background-color: var(--ant-color-primary-border);
+    transition: 0.1s;
+  }
+
+  &:focus-visible {
+    &::after {
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,31 @@
+@use '../abstracts/sizes' as *;
+@use '../abstracts/mixins' as *;
+@use 'sass:map';
+
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+@include generate-classes($prefix: 'top', $property: 'top', $value-map: $sizes);
+
+@include generate-classes(
+  $prefix: 'left',
+  $property: 'left',
+  $value-map: $sizes
+);
+
+@include generate-classes(
+  $prefix: 'bottom',
+  $property: 'bottom',
+  $value-map: $sizes
+);
+
+@include generate-classes(
+  $prefix: 'right',
+  $property: 'right',
+  $value-map: $sizes
+);

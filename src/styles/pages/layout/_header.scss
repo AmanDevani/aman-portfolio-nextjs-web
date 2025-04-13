@@ -1,0 +1,13 @@
+@use '../../abstracts' as *;
+@use '../../utilities/' as *;
+
+.header {
+  position: fixed;
+  top: 0;
+  z-index: z-index('header');
+  background-color: color('body', 100);
+  color: color('content', 'primary');
+  width: 100%;
+  height: 60px;
+  border-bottom: 1px solid color('border');
+}

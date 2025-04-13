@@ -1,0 +1,25 @@
+@use '../abstracts/sizes' as *;
+@use '../abstracts/mixins' as *;
+@use 'sass:map';
+
+$map: map-merge(
+  (
+    auto: auto,
+    'full': 100%,
+    'half': 50%,
+    24: 9.6rem,
+    28: 11.2rem,
+    32: 12.8rem,
+    36: 14.4rem,
+    40: 16rem,
+    44: 17.6rem,
+    48: 19.2rem,
+    52: 20.8rem,
+    56: 22.4rem,
+    60: 24rem,
+  ),
+  $sizes
+);
+
+@include generate-classes($prefix: 'w', $property: 'width', $value-map: $map);
+@include generate-classes($prefix: 'h', $property: 'height', $value-map: $map);

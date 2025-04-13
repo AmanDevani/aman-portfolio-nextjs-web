@@ -1,9 +1,9 @@
-import { createEnv } from "@t3-oss/env-nextjs";
-import { z } from "zod";
+import { createEnv } from '@t3-oss/env-nextjs';
+import { z } from 'zod';
 
 const env = createEnv({
   client: {
-    NEXT_PUBLIC_ENV: z.enum(["development", "production"]),
+    NEXT_PUBLIC_ENV: z.enum(['development', 'production']),
     NEXT_PUBLIC_WEB_URL: z.string(),
     NEXT_PUBLIC_FIREBASE_API_KEY: z.string(),
     NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: z.string(),
@@ -16,7 +16,7 @@ const env = createEnv({
     NEXT_PUBLIC_CLOUDINARY_FOLDER_NAME: z.string(),
   },
   shared: {
-    NODE_ENV: z.enum(["development", "production"]).default("development"),
+    NODE_ENV: z.enum(['development', 'production']).default('development'),
   },
   runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,

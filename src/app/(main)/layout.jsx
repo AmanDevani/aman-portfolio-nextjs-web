@@ -1,4 +1,5 @@
 import { PERSONAL_INFO } from '@/common';
+import Layout from '@/components/layout';
 import Providers from '@/providers';
 
 export async function generateMetadata() {
@@ -37,7 +38,11 @@ export async function generateMetadata() {
 }
 
 const MainLayout = ({ children }) => {
-  return <Providers>{children}</Providers>;
+  return (
+    <Providers>
+      <Layout>{children}</Layout>
+    </Providers>
+  );
 };
 
 export default MainLayout;

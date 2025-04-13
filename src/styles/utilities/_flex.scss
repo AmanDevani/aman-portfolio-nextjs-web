@@ -1,0 +1,70 @@
+@use '../abstracts/sizes' as *;
+@use '../abstracts/mixins' as *;
+
+@include generate-classes($prefix: 'gap', $property: 'gap', $value-map: $sizes);
+@include generate-classes(
+  $prefix: 'gap-x',
+  $property: 'column-gap',
+  $value-map: $sizes
+);
+@include generate-classes(
+  $prefix: 'gap-y',
+  $property: 'row-gap',
+  $value-map: $sizes
+);
+@include generate-classes(
+  $prefix: 'items',
+  $property: 'align-items',
+  $value-map: (
+    'start': flex-start,
+    'end': flex-end,
+    'center': center,
+  )
+);
+@include generate-classes(
+  $prefix: 'justify',
+  $property: 'justify-content',
+  $value-map: (
+    'start': flex-start,
+    'end': flex-end,
+    'between': space-between,
+    'around': space-around,
+    'center': center,
+  )
+);
+@include generate-classes(
+  $prefix: 'flex',
+  $property: 'flex-grow',
+  $value-map: (
+    'grow': 1,
+    0: 0,
+  )
+);
+@include generate-classes(
+  $prefix: 'flex',
+  $property: 'flex-shrink',
+  $value-map: (
+    'shrink': 1,
+    0: 0,
+  )
+);
+
+@include generate-classes(
+  $prefix: 'flex',
+  $property: 'flex-direction',
+  $value-map: (
+    'row': row,
+    'row-reverse': row-reverse,
+    'col': column,
+    'col-reverse': column-reverse,
+  )
+);
+
+@include generate-classes(
+  $prefix: 'flex',
+  $property: 'flex-wrap',
+  $value-map: (
+    'wrap': wrap,
+    'nowrap': nowrap,
+  )
+);

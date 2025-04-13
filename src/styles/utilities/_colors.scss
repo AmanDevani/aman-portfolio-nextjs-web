@@ -1,0 +1,48 @@
+@use '../abstracts/colors' as *;
+@use '../abstracts/mixins' as *;
+
+@each $color-key, $color in $colors {
+  @if type-of($color) == 'string' {
+    .bg-#{$color-key} {
+      background-color: $color;
+    }
+    .text-#{$color-key} {
+      color: $color;
+    }
+    .border-#{$color-key} {
+      border-color: $color;
+    }
+    .fill-#{$color-key} {
+      fill: $color;
+    }
+    .stroke-#{$color-key} {
+      stroke: $color;
+    }
+  } @else {
+    @include generate-classes(
+      $prefix: 'bg-#{$color-key}',
+      $property: 'background-color',
+      $value-map: $color
+    );
+    @include generate-classes(
+      $prefix: 'text-#{$color-key}',
+      $property: 'color',
+      $value-map: $color
+    );
+    @include generate-classes(
+      $prefix: 'border-#{$color-key}',
+      $property: 'border-color',
+      $value-map: $color
+    );
+    @include generate-classes(
+      $prefix: 'fill-#{$color-key}',
+      $property: 'fill',
+      $value-map: $color
+    );
+    @include generate-classes(
+      $prefix: 'stroke-#{$color-key}',
+      $property: 'stroke',
+      $value-map: $color
+    );
+  }
+}

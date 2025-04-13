@@ -1,0 +1,97 @@
+@use '../abstracts/typography' as *;
+@use '../abstracts/mixins' as *;
+
+@include generate-classes(
+  $prefix: 'font',
+  $property: 'font-family',
+  $value-map: $font-families
+);
+
+@include generate-classes(
+  $prefix: 'text',
+  $property: 'font-size',
+  $value-map: $font-sizes
+);
+
+@include generate-classes(
+  $prefix: 'font',
+  $property: 'font-weight',
+  $value-map: $font-weights
+);
+
+@include generate-classes(
+  $prefix: 'leading',
+  $property: 'line-height',
+  $value-map: $line-heights
+);
+
+@include generate-classes(
+  $property: 'text-transform',
+  $value-map: (
+    'uppercase': uppercase,
+    'lowercase': lowercase,
+    'capitalize': capitalize,
+  )
+);
+
+@include generate-classes(
+  $prefix: 'text',
+  $property: 'text-align',
+  $value-map: (
+    'left': left,
+    'center': center,
+    'right': right,
+    'justify': justify,
+  )
+);
+@include generate-classes(
+  $prefix: 'align',
+  $property: 'vertical-align',
+  $value-map: (
+    'top': top,
+    'middle': middle,
+    'baseline': baseline,
+    'bottom': bottom,
+  )
+);
+
+.underline {
+  text-decoration: underline;
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.text-ellipsis {
+  text-overflow: ellipsis;
+}
+@include respond-to('lg') {
+  @include generate-classes(
+    $prefix: 'text',
+    $property: 'font-size',
+    $value-map: $medium-device-font-sizes
+  );
+
+  @include generate-classes(
+    $prefix: 'leading',
+    $property: 'line-height',
+    $value-map: $medium-device-line-heights
+  );
+}
+
+@include respond-to('md') {
+  @include generate-classes(
+    $prefix: 'text',
+    $property: 'font-size',
+    $value-map: $small-device-font-sizes
+  );
+
+  @include generate-classes(
+    $prefix: 'leading',
+    $property: 'line-height',
+    $value-map: $small-device-line-heights
+  );
+}

@@ -1,0 +1,130 @@
+:root {
+  --font-primary: 'figtree', sans-serif;
+  --font-secondary: 'lora', sans-serif;
+}
+
+$font-families: (
+  'primary': var(--font-primary),
+  'secondary': var(--font-secondary),
+);
+
+$font-weights: (
+  'normal': 400,
+  'medium': 500,
+  'semibold': 600,
+  'bold': 700,
+);
+
+$font-sizes: (
+  'sm': 1.4rem,
+  'md': 1.8rem,
+  'lg': 2rem,
+  'base': 1.6rem,
+  'meta': 1.2rem,
+
+  'h1': 6rem,
+  'h2': 4.4rem,
+  'h3': 3.6rem,
+  'h4': 2.8rem,
+  'h5': 2.2rem,
+  'h6': 1.8rem,
+
+  'label-base': 1.6rem,
+  'label-sm': 1.4rem,
+  'label-meta': 1.2rem,
+);
+
+$line-heights: (
+  'sm': 2rem,
+  'md': 2.8rem,
+  'lg': 3rem,
+  'base': 2.4rem,
+  'meta': 1.8rem,
+
+  'h1': 7.2rem,
+  'h2': 5.2rem,
+  'h3': 4.4rem,
+  'h4': 3.4rem,
+  'h5': 3.2rem,
+  'h6': 2.8rem,
+
+  'label-base': 1.6rem,
+  'label-sm': 1.4rem,
+  'label-meta': 1.2rem,
+);
+
+$medium-device-font-sizes: (
+  'sm': 1.4rem,
+  'md': 1.8rem,
+  'lg': 2rem,
+  'base': 1.6rem,
+  'meta': 1.2rem,
+
+  'h1': 5.2rem,
+  'h2': 4rem,
+  'h3': 3.2rem,
+  'h4': 2.4rem,
+  'h5': 2rem,
+  'h6': 1.6rem,
+
+  'label-base': 1.6rem,
+  'label-sm': 1.4rem,
+  'label-meta': 1.2rem,
+);
+
+$medium-device-line-heights: (
+  'sm': 2rem,
+  'md': 2.8rem,
+  'lg': 3rem,
+  'base': 2.4rem,
+  'meta': 1.8rem,
+
+  'h1': 6.2rem,
+  'h2': 4.8rem,
+  'h3': 3.8rem,
+  'h4': 3.2rem,
+  'h5': 3rem,
+  'h6': 2.4rem,
+
+  'label-base': 1.6rem,
+  'label-sm': 1.4rem,
+  'label-meta': 1.2rem,
+);
+
+$small-device-font-sizes: (
+  'sm': 1rem,
+  'md': 1.4rem,
+  'lg': 1.6rem,
+  'base': 1.2rem,
+  'meta': 0.8rem,
+
+  'h1': 3.6rem,
+  'h2': 2.8rem,
+  'h3': 2.4rem,
+  'h4': 2rem,
+  'h5': 1.6rem,
+  'h6': 1.4rem,
+
+  'label-base': 1.2rem,
+  'label-sm': 1rem,
+  'label-meta': 0.8rem,
+);
+
+$small-device-line-heights: (
+  'sm': 1.6rem,
+  'md': 2rem,
+  'lg': 2.4rem,
+  'base': 1.8rem,
+  'meta': 1.4rem,
+
+  'h1': 4.4rem,
+  'h2': 3.4rem,
+  'h3': 3.2rem,
+  'h4': 3rem,
+  'h5': 2.4rem,
+  'h6': 2.2rem,
+
+  'label-base': 1.2rem,
+  'label-sm': 1rem,
+  'label-meta': 0.8rem,
+);

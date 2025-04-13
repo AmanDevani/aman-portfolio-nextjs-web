@@ -1,0 +1,47 @@
+@use 'sass:map';
+@use 'colors' as *;
+@use 'typography' as *;
+@use 'shadows' as *;
+@use 'sizes' as *;
+@use 'breakpoints' as *;
+@use 'z-index' as *;
+
+@function get-value($map, $key-parts...) {
+  @return map.get($map, $key-parts...);
+}
+
+@function color($key-parts...) {
+  @return get-value($colors, $key-parts...);
+}
+
+@function font-family($key-parts...) {
+  @return get-value($font-families, $key-parts...);
+}
+
+@function font-size($key-parts...) {
+  @return get-value($font-sizes, $key-parts...);
+}
+
+@function line-height($key-parts...) {
+  @return get-value($line-heights, $key-parts...);
+}
+
+@function font-weight($key-parts...) {
+  @return get-value($font-weights, $key-parts...);
+}
+
+@function shadow($key-parts...) {
+  @return get-value($shadows, $key-parts...);
+}
+
+@function size($key-parts...) {
+  @return get-value($sizes, $key-parts...);
+}
+
+@function breakpoint($key-parts...) {
+  @return get-value($breakpoints, $key-parts...);
+}
+
+@function z-index($key-parts...) {
+  @return get-value($z-indexes, $key-parts...);
+}
