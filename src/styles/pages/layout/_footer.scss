@@ -1,0 +1,25 @@
+@use '../../utilities/' as *;
+@use '../../abstracts/' as *;
+
+.footer {
+  @extend .container;
+  border-top: 1px solid color('border');
+
+  &-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .social-icons {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+
+      svg:hover {
+        cursor: pointer;
+        fill: color('primary', 'background');
+        transition: all 0.3 ease-in-out;
+      }
+    }
+  }
+}

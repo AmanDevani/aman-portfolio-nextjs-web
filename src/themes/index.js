@@ -5,13 +5,19 @@ const { defaultAlgorithm, getDesignToken } = theme;
 const DEFAULT_WEB_COLORS = {
   light: {
     colorPrimary: '#535353',
-    colorBgBase: '#FBFBFB',
-    // #1a1a1a
+    colorPrimaryText: '#ffffff',
+    colorBgBase: '#f3f3f3',
+    colorBgContainer: '#FBFBFB',
+    colorBorder: '#e0e0e0',
+    colorTextBase: '#1a1a1a',
   },
   dark: {
-    colorPrimary: '#DFM1D4',
-    colorBgBase: '#535353',
-    // #1a1a1a
+    colorPrimary: '#cccccc',
+    colorPrimaryText: '#000000',
+    colorBgBase: '#121212',
+    colorBgContainer: '#1e1e1e',
+    colorBorder: '#2e2e2e',
+    colorTextBase: '#eeeeee',
   },
 };
 

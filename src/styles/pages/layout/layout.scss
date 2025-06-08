@@ -1,0 +1,21 @@
+@use '../../abstracts' as *;
+@use '../../utilities' as *;
+
+.app {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: color('body', 100);
+  color: color('content', 'primary');
+  font-family: font-family('primary');
+  padding-top: $header-height;
+  overflow-y: auto;
+
+  &-body {
+    flex: 1;
+    &__content {
+      height: 100%;
+      @extend .container;
+    }
+  }
+}

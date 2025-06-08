@@ -1,0 +1,16 @@
+@use '../abstracts/' as *;
+
+.section-header {
+  width: 100%;
+  margin: auto;
+  text-align: center;
+
+  &-title {
+    margin: 0.5rem;
+  }
+
+  &-description {
+    max-width: 50rem;
+    margin: auto;
+  }
+}

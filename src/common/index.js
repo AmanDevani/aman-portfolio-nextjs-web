@@ -20,3 +20,12 @@ export const PERSONAL_INFO = {
 export const ROUTES = {
   HOME: '/',
 };
+
+export const SECTION_HEADER_TITLE = {
+  CONTACT_SECTION_TITLE: 'Get in touch',
+};
+
+export const SECTION_HEADER_DESCRIPTION = {
+  CONTACT_SECTION_DESCRIPTION:
+    'Have a question or want to work together? Feel free to contact me using the form below or through my contact information.',
+};

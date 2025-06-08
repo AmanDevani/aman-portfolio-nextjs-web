@@ -81,12 +81,9 @@ $overflows: (
 }
 
 .container {
-  @extend .mx-auto;
   max-width: 192rem;
-}
-
-.wrapper-padding-inline {
   padding-inline: size(12);
+  padding-block: size(6);
 
   @include respond-to('lg') {
     padding-inline: size(6);
@@ -94,15 +91,6 @@ $overflows: (
 
   @include respond-to('sm') {
     padding-inline: size(4);
-  }
-}
-
-.wrapper-padding {
-  @extend .wrapper-padding-inline;
-
-  padding-block: size(6);
-
-  @include respond-to('sm') {
     padding-block: size(4);
   }
 }

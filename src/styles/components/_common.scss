@@ -1,0 +1,17 @@
+@use '../abstracts/' as *;
+
+.sqare {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  justify-content: center;
+  border-radius: 8px;
+  border: 1px solid color('border');
+  cursor: pointer;
+
+  svg {
+    fill: color('primary', 'background');
+  }
+}
