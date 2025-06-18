@@ -26,6 +26,16 @@ export const SECTION_HEADER_TITLE = {
 };
 
 export const SECTION_HEADER_DESCRIPTION = {
+  EXPERIENCE_SECTION_TITLE: 'Experience',
+  EXPERIENCE_SECTION_DESCRIPTION: '',
+  EDUCATION_SECTION_TITLE: 'Education',
+  EDUCATION_SECTION_DESCRIPTION: '',
+  SKILLS_SECTION_TITLE: 'My Skills',
+  SKILLS_SECTION_DESCRIPTION:
+    "Technologies and tools I've worked with throughout my projects and experience",
+  PROJECTS_SECTION_TITLE: 'Projects',
+  PROJECTS_SECTION_DESCRIPTION: '',
+  CONTACT_SECTION_TITLE: 'Contact Me',
   CONTACT_SECTION_DESCRIPTION:
     'Have a question or want to work together? Feel free to contact me using the form below or through my contact information.',
 };
