@@ -4,20 +4,20 @@ const { defaultAlgorithm, getDesignToken } = theme;
 
 const DEFAULT_WEB_COLORS = {
   light: {
-    colorPrimary: '#535353',
+    colorPrimary: '#18181B',
     colorPrimaryText: '#ffffff',
-    colorBgBase: '#f3f3f3',
-    colorBgContainer: '#FBFBFB',
+    colorBgBase: '#ffffff',
+    colorBgContainer: '#f4f4f5',
     colorBorder: '#e0e0e0',
-    colorTextBase: '#1a1a1a',
+    colorTextBase: '#09090B',
   },
   dark: {
-    colorPrimary: '#cccccc',
-    colorPrimaryText: '#000000',
-    colorBgBase: '#121212',
-    colorBgContainer: '#1e1e1e',
+    colorPrimary: '#ffffff',
+    colorPrimaryText: '#FAFAFA',
+    colorBgBase: '#09090B',
+    colorBgContainer: '#27272A',
     colorBorder: '#2e2e2e',
-    colorTextBase: '#eeeeee',
+    colorTextBase: '#A1A1AA',
   },
 };
 

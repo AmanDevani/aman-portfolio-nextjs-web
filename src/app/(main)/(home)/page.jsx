@@ -1,7 +1,7 @@
-'use client';
+import Home from '../../../components/pages/home/home';
 
-const Home = () => {
-  return <div>Home</div>;
+const homePage = () => {
+  return <Home />;
 };
 
-export default Home;
+export default homePage;
