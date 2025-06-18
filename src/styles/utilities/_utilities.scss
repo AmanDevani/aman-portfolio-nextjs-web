@@ -81,8 +81,7 @@ $overflows: (
 }
 
 .container {
-  max-width: 192rem;
-  padding-inline: size(12);
+  padding-inline: 18rem;
   padding-block: size(6);
 
   @include respond-to('lg') {

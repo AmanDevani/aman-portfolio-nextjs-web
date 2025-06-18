@@ -1,8 +1,8 @@
 'use client';
 
 import React from 'react';
-import SectionHeader from '../../common/sectionHeader';
 import { SECTION_HEADER_DESCRIPTION } from '@/common';
+import SectionHeader from '../common/sectionHeader';
 
 const Experience = () => {
   return (

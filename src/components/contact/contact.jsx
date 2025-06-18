@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import SectionHeader from '../../common/sectionHeader';
+import SectionHeader from '../common/sectionHeader';
 import { SECTION_HEADER_DESCRIPTION } from '@/common';
 
 const Contact = () => {
