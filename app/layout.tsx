@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
+import { Toaster } from "sonner";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Providers from "@/providers";
 import { WEBSITE_DETAILS } from "@/lib/constant";
+import Footer from "@/components/layout/footer";
+import Header from "@/components/layout/header";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,7 +41,20 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Providers>{children}</Providers>
+        <Providers>
+          <Header />
+          {children}
+          <Toaster position="top-center" />
+          <Footer />
+        </Providers>
+        {/* <Script
+          src="https://platform.linkedin.com/badges/js/profile.js"
+          async
+          defer
+          type="text/javascript"
+          strategy="beforeInteractive"
+          id="linkedin-badge-script"
+        ></Script> */}
       </body>
     </html>
   );

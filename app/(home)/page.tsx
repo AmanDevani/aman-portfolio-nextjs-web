@@ -1,9 +1,9 @@
-import { ModeToggle } from "@/components/mode-toggle";
+import Home from "@/components/pages/home";
 
-export default function Home() {
+export default function page() {
   return (
-    <div>
-      <ModeToggle />
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <Home />
     </div>
   );
 }
