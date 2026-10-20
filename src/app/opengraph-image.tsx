@@ -2,8 +2,8 @@ import { ImageResponse } from "next/og";
 
 import { personalInfo } from "@/data/personal";
 import { skillCategories } from "@/data/skills";
+import { readDarkThemeTokens } from "@/lib/theme-tokens";
 
-export const runtime = "edge";
 export const alt = `${personalInfo.name} — ${personalInfo.role}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
@@ -19,6 +19,9 @@ const initials = personalInfo.name
   .join("");
 
 export default function OGImage() {
+  // Colours come from src/styles/theme.css (.dark) — never hard-code them here.
+  const theme = readDarkThemeTokens();
+
   return new ImageResponse(
     (
       <div
@@ -27,39 +30,37 @@ export default function OGImage() {
           flexDirection: "column",
           width: "100%",
           height: "100%",
-          background: "linear-gradient(135deg, #0b0d0f 0%, #14171a 60%, #0b0d0f 100%)",
+          background: theme["background"],
           padding: "72px 80px",
           fontFamily: "system-ui, -apple-system, sans-serif",
           position: "relative",
           overflow: "hidden",
         }}
       >
-        {/* Copper glow — top right */}
+        {/* Primary glow — top right */}
         <div
           style={{
             position: "absolute",
             top: -160,
             right: -160,
-            width: 520,
-            height: 520,
+            width: 620,
+            height: 620,
             borderRadius: "50%",
-            background:
-              "radial-gradient(circle, rgba(201,122,58,0.28) 0%, transparent 70%)",
+            background: `radial-gradient(circle, ${theme["glow-primary"]} 0%, transparent 70%)`,
             display: "flex",
           }}
         />
 
-        {/* Mint glow — bottom left */}
+        {/* Accent glow — bottom left */}
         <div
           style={{
             position: "absolute",
-            bottom: -120,
-            left: -80,
-            width: 400,
-            height: 400,
+            bottom: -140,
+            left: -100,
+            width: 500,
+            height: 500,
             borderRadius: "50%",
-            background:
-              "radial-gradient(circle, rgba(31,156,134,0.18) 0%, transparent 70%)",
+            background: `radial-gradient(circle, ${theme["glow-accent"]} 0%, transparent 70%)`,
             display: "flex",
           }}
         />
@@ -71,11 +72,11 @@ export default function OGImage() {
               width: 52,
               height: 52,
               borderRadius: 12,
-              background: "#c97a3a",
+              background: theme["primary"],
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              color: "white",
+              color: theme["primary-foreground"],
               fontSize: 20,
               fontWeight: 700,
               letterSpacing: "-0.5px",
@@ -83,25 +84,18 @@ export default function OGImage() {
           >
             {initials}
           </div>
-          <span style={{ color: "#e3a876", fontSize: 22, fontWeight: 600 }}>
+          <span style={{ color: theme["foreground"], fontSize: 22, fontWeight: 600 }}>
             {personalInfo.name}
           </span>
         </div>
 
         {/* Main headline */}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            marginTop: 56,
-            gap: 20,
-          }}
-        >
+        <div style={{ display: "flex", flexDirection: "column", marginTop: 56, gap: 20 }}>
           <div
             style={{
               fontSize: 76,
               fontWeight: 800,
-              color: "white",
+              color: theme["primary"],
               lineHeight: 1.05,
               letterSpacing: "-2.5px",
             }}
@@ -112,7 +106,7 @@ export default function OGImage() {
           <div
             style={{
               fontSize: 28,
-              color: "#94a3b8",
+              color: theme["muted-foreground"],
               lineHeight: 1.5,
               maxWidth: 680,
             }}
@@ -128,11 +122,11 @@ export default function OGImage() {
                 style={{
                   padding: "10px 20px",
                   borderRadius: 8,
-                  border: "1px solid rgba(201,122,58,0.45)",
-                  color: "#e3a876",
+                  border: `1px solid ${theme["border"]}`,
+                  color: theme["accent"],
                   fontSize: 18,
                   fontWeight: 500,
-                  background: "rgba(201,122,58,0.12)",
+                  background: theme["card"],
                   display: "flex",
                 }}
               >
@@ -149,11 +143,10 @@ export default function OGImage() {
             display: "flex",
             alignItems: "center",
             gap: 8,
-            color: "#475569",
+            color: theme["muted-foreground"],
             fontSize: 20,
           }}
         >
-          <span>📍</span>
           <span>{personalInfo.location}</span>
         </div>
       </div>
