@@ -1,43 +1,45 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 
 import { Button } from "@/components/ui/button";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
 import { Sun, Moon } from "lucide-react";
 
-export default function ThemeToggle() {
-  const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
+const subscribe = () => () => {};
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+export default function ThemeToggle() {
+  const { resolvedTheme, setTheme } = useTheme();
+  const mounted = useSyncExternalStore(subscribe, () => true, () => false);
 
   if (!mounted) {
     return (
-      <Button variant="ghost" size="icon" className="h-9 w-9" aria-label="Toggle theme" disabled>
-        <Sun className="h-4 w-4" />
+      <Button variant="ghost" size="icon-lg" aria-label="Toggle theme" disabled>
+        <Sun />
       </Button>
     );
   }
 
-  const isDark = theme === "dark";
+  const isDark = resolvedTheme === "dark";
+  const label = isDark ? "Switch to light mode" : "Switch to dark mode";
 
   return (
-    <Button
-      variant="ghost"
-      size="icon"
-      className="h-9 w-9 text-muted-foreground hover:text-foreground"
-      aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
-      onClick={() => setTheme(isDark ? "light" : "dark")}
-    >
-      {isDark ? (
-        <Sun className="h-4 w-4 transition-transform duration-200 rotate-0 scale-100" />
-      ) : (
-        <Moon className="h-4 w-4 transition-transform duration-200 rotate-0 scale-100" />
-      )}
-    </Button>
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Button
+          variant="ghost"
+          size="icon-lg"
+          className="relative text-muted-foreground hover:text-foreground"
+          aria-label={label}
+          onClick={() => setTheme(isDark ? "light" : "dark")}
+        >
+          <Sun className="scale-0 rotate-90 transition-transform duration-300 dark:scale-100 dark:rotate-0" />
+          <Moon className="absolute scale-100 rotate-0 transition-transform duration-300 dark:scale-0 dark:-rotate-90" />
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent>{label}</TooltipContent>
+    </Tooltip>
   );
 }
