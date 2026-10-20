@@ -1,39 +1,23 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Separator } from "@/components/ui/separator";
+import { CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
+import Reveal from "@/components/custom/Reveal/Reveal";
 import SectionHeading from "@/components/custom/SectionHeading/SectionHeading";
 import SkillBadge from "@/components/custom/SkillBadge/SkillBadge";
+import SpotlightCard from "@/components/custom/SpotlightCard/SpotlightCard";
 
 import { personalInfo } from "@/data/personal";
 import { skillCategories } from "@/data/skills";
 import { education } from "@/data/education";
-import { trackSectionView } from "@/lib/analytics";
+import { experienceItems } from "@/data/experience";
+import { useSectionView } from "@/hooks/useSectionView";
 
-import { GraduationCap } from "lucide-react";
+import { Briefcase, Code2, GraduationCap, MapPin, Quote } from "lucide-react";
 
 export default function About() {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            trackSectionView("about");
-            observer.disconnect();
-          }
-        });
-      },
-      { threshold: 0.3 }
-    );
-
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
+  const sectionRef = useSectionView<HTMLElement>("about");
 
   if (skillCategories.length === 0) return null;
 
@@ -42,88 +26,146 @@ export default function About() {
     .map((part) => part[0])
     .join("");
 
+  const currentRole = experienceItems.find((experienceItem) => experienceItem.endDate.toLowerCase() === "present");
+
   return (
-    <section ref={sectionRef} id="about" className="py-24 bg-secondary/30 border-y border-border">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6">
+    <section ref={sectionRef} id="about" className="relative overflow-hidden py-20 sm:py-28">
+      <div className="aurora-b pointer-events-none absolute -left-40 top-1/3 h-[32rem] w-[32rem] rounded-full" aria-hidden="true" />
+
+      <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeading
           label="01. About"
           title="Who I Am"
           subtitle="A bit about my background, what I build, and the tools I reach for."
         />
 
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-12 lg:gap-16">
+        <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
 
-          {/* Bio column */}
-          <div className="flex flex-col gap-7">
-            <div className="flex items-center gap-4">
-              <Avatar className="w-20 h-20 shrink-0 ring-2 ring-border shadow-sm">
-                <AvatarImage
-                  src={personalInfo.avatar}
-                  alt={`${personalInfo.name} profile photo`}
-                />
-                <AvatarFallback className="bg-primary/10 text-primary text-xl font-bold font-display border border-primary/20">
-                  {initials}
-                </AvatarFallback>
-              </Avatar>
-              <div className="flex flex-col gap-0.5">
-                <span className="text-lg font-semibold text-foreground leading-tight">
-                  {personalInfo.name}
-                </span>
-                <span className="text-base text-primary font-medium">{personalInfo.role}</span>
-                <span className="text-sm text-muted-foreground font-mono mt-0.5">
-                  {personalInfo.location}
-                </span>
-              </div>
-            </div>
-
-            <p className="text-base text-muted-foreground leading-relaxed">{personalInfo.bio}</p>
-
-            <Separator className="bg-border" />
-          </div>
-
-          {/* Skills column */}
-          <div className="flex flex-col gap-8">
-            <div className="grid grid-cols-2 gap-4">
-              <div className="flex flex-col gap-0.5 p-3 bg-card border border-border rounded-lg">
-                <span className="text-2xl font-bold font-display text-foreground">2+</span>
-                <span className="text-sm text-muted-foreground">Years of experience</span>
-              </div>
-              {education.length > 0 && (
-                <div className="flex flex-col gap-0.5 p-3 bg-card border border-border rounded-lg">
-                  <div className="flex items-center gap-1.5 text-primary">
-                    <GraduationCap className="h-4 w-4 shrink-0" />
-                    <span className="text-xs font-mono uppercase tracking-wide">
-                      {education[0].startYear}–{education[0].endYear}
+          {/* Bio — spans two columns */}
+          <Reveal className="lg:col-span-2">
+            <SpotlightCard className="h-full gap-6 p-0">
+              <div className="h-1.5 gradient-border" aria-hidden="true" />
+              <CardHeader className="px-6 pt-2">
+                <div className="flex items-center gap-4">
+                  <Avatar className="h-16 w-16 shrink-0 ring-2 ring-primary/50 ring-offset-4 ring-offset-card sm:h-20 sm:w-20">
+                    <AvatarImage src={personalInfo.avatar} alt={`${personalInfo.name} profile photo`} />
+                    <AvatarFallback className="bg-secondary font-mono text-xl font-bold text-primary">
+                      {initials}
+                    </AvatarFallback>
+                  </Avatar>
+                  <div className="flex min-w-0 flex-col gap-1">
+                    <CardTitle className="font-mono text-lg sm:text-xl">{personalInfo.name}</CardTitle>
+                    <span className="text-sm font-medium text-primary sm:text-base">{personalInfo.role}</span>
+                    <span className="inline-flex items-center gap-1.5 font-mono text-xs text-muted-foreground sm:text-sm">
+                      <MapPin className="h-3.5 w-3.5 text-primary" />
+                      {personalInfo.location}
                     </span>
                   </div>
-                  <span className="text-sm font-semibold text-foreground leading-snug">
-                    {education[0].degree}
-                  </span>
-                  <span className="text-xs text-muted-foreground">{education[0].institution}</span>
                 </div>
-              )}
-            </div>
+              </CardHeader>
+              <CardContent className="relative px-6 pb-6">
+                <Quote className="absolute -top-1 right-6 h-10 w-10 text-primary/10" aria-hidden="true" />
+                <p className="text-sm leading-relaxed text-muted-foreground sm:text-base sm:leading-loose">
+                  {personalInfo.bio}
+                </p>
+              </CardContent>
+            </SpotlightCard>
+          </Reveal>
 
-            {skillCategories.map((skillCategory) => (
-              <div key={skillCategory.category} className="flex flex-col gap-3">
-                <div className="flex items-center gap-3">
-                  <span className="text-sm font-mono font-semibold text-primary tracking-widest uppercase">
-                    {skillCategory.category}
-                  </span>
-                  <div className="flex-1 h-px bg-border" />
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {skillCategory.skills.map((skill) => (
-                    <SkillBadge
-                      key={skill.name}
-                      skill={skill}
-                      category={skillCategory.category}
-                    />
-                  ))}
-                </div>
-              </div>
-            ))}
+          {/* Right column: currently + education */}
+          <div className="flex flex-col gap-5">
+            {currentRole && (
+              <Reveal delay={0.1}>
+                <SpotlightCard className="gap-4">
+                  <CardHeader>
+                    <div className="flex items-center gap-2.5">
+                      <span className="relative flex h-2 w-2">
+                        <span className="absolute inset-0 rounded-full bg-primary animate-pulse-ring" aria-hidden="true" />
+                        <span className="relative h-2 w-2 rounded-full bg-primary" />
+                      </span>
+                      <span className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
+                        Currently working
+                      </span>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="flex items-start gap-4">
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                      <Briefcase className="h-5 w-5" />
+                    </span>
+                    <div className="flex min-w-0 flex-col gap-0.5">
+                      <CardTitle className="font-mono text-base">{currentRole.role}</CardTitle>
+                      <a
+                        href={currentRole.companyUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-fit text-sm font-medium text-primary underline-offset-4 hover:underline"
+                      >
+                        {currentRole.company}
+                      </a>
+                      <CardDescription className="font-mono text-xs">
+                        {currentRole.startDate} – Present
+                      </CardDescription>
+                    </div>
+                  </CardContent>
+                </SpotlightCard>
+              </Reveal>
+            )}
+
+            {education.length > 0 && (
+              <Reveal delay={0.15}>
+                <SpotlightCard className="gap-4">
+                  <CardHeader>
+                    <div className="flex items-center gap-2.5 text-muted-foreground">
+                      <GraduationCap className="h-4 w-4 shrink-0" />
+                      <span className="font-mono text-xs uppercase tracking-widest">Education</span>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="flex flex-col gap-4">
+                    {education.map((educationItem) => (
+                      <div key={educationItem.id} className="flex flex-col gap-1">
+                        <CardTitle className="font-mono text-base">{educationItem.degree}</CardTitle>
+                        <CardDescription>{educationItem.institution}</CardDescription>
+                        <CardDescription className="font-mono text-xs">
+                          {educationItem.startYear} – {educationItem.endYear}
+                        </CardDescription>
+                      </div>
+                    ))}
+                  </CardContent>
+                </SpotlightCard>
+              </Reveal>
+            )}
           </div>
+
+          {/* Tech stack — full width */}
+          <Reveal delay={0.2} className="lg:col-span-3">
+            <SpotlightCard className="gap-5">
+              <CardHeader>
+                <div className="flex items-center gap-2.5 text-muted-foreground">
+                  <Code2 className="h-4 w-4" />
+                  <span className="font-mono text-xs uppercase tracking-widest">Tech stack</span>
+                </div>
+              </CardHeader>
+              <CardContent className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                {skillCategories.map((skillCategory) => (
+                  <div key={skillCategory.category} className="flex flex-col gap-3">
+                    <span className="font-mono text-sm font-semibold text-primary">
+                      {skillCategory.category}
+                    </span>
+                    <ul className="flex flex-wrap gap-2">
+                      {skillCategory.skills.map((skill, index) => (
+                        <SkillBadge
+                          key={skill.name}
+                          skill={skill}
+                          category={skillCategory.category}
+                          index={index}
+                        />
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </CardContent>
+            </SpotlightCard>
+          </Reveal>
 
         </div>
       </div>

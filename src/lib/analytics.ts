@@ -1,7 +1,14 @@
 import { track } from "@vercel/analytics";
 
+declare global {
+  interface Window {
+    gtag?: (command: "event", eventName: string, params?: Record<string, string | number | boolean>) => void;
+  }
+}
+
 function sendEvent(eventName: string, params: Record<string, string | number | boolean> = {}): void {
   track(eventName, params);
+  if (typeof window !== "undefined") window.gtag?.("event", eventName, params);
 }
 
 export function trackHeroCTAClick(ctaLabel: string): void {
@@ -55,12 +62,13 @@ export function trackExperienceCompanyClick(companyName: string, companyUrl: str
   });
 }
 
-export function trackEmailClick(emailAddress: string): void {
-  sendEvent("email_click", { email_address: emailAddress });
+// No contact details are sent as parameters: GA4 policy forbids personal data.
+export function trackEmailClick(): void {
+  sendEvent("email_click");
 }
 
-export function trackPhoneClick(phoneNumber: string): void {
-  sendEvent("phone_click", { phone_number: phoneNumber });
+export function trackPhoneClick(): void {
+  sendEvent("phone_click");
 }
 
 export function trackSocialLinkClick(socialPlatform: string, socialUrl: string): void {

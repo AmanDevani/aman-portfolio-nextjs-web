@@ -1,38 +1,19 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-
 import SectionHeading from "@/components/custom/SectionHeading/SectionHeading";
 import TimelineItem from "@/components/custom/TimelineItem/TimelineItem";
 
 import { experienceItems } from "@/data/experience";
-import { trackSectionView } from "@/lib/analytics";
+import { useSectionView } from "@/hooks/useSectionView";
 
 export default function Experience() {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            trackSectionView("experience");
-            observer.disconnect();
-          }
-        });
-      },
-      { threshold: 0.3 }
-    );
-
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
+  const sectionRef = useSectionView<HTMLElement>("experience");
 
   if (experienceItems.length === 0) return null;
 
   return (
-    <section ref={sectionRef} id="experience" className="py-24 bg-secondary/30 border-y border-border">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6">
+    <section ref={sectionRef} id="experience" className="py-20 sm:py-28">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6">
         <SectionHeading
           label="03. Experience"
           title="Where I've Worked"
@@ -45,6 +26,7 @@ export default function Experience() {
               key={experienceItem.id}
               experienceItem={experienceItem}
               index={index}
+              isLast={index === experienceItems.length - 1}
             />
           ))}
         </div>

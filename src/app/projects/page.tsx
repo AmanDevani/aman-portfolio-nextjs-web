@@ -1,68 +1,54 @@
 "use client";
 
-import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 
+import Reveal from "@/components/custom/Reveal/Reveal";
 import ProjectCard from "@/components/custom/ProjectCard/ProjectCard";
 
 import { projects } from "@/data/projects";
-import { trackSectionView } from "@/lib/analytics";
+import { useSectionView } from "@/hooks/useSectionView";
 
 import { ArrowLeft } from "lucide-react";
 
 export default function ProjectsPage() {
-  const mainRef = useRef<HTMLElement>(null);
+  const mainRef = useSectionView<HTMLElement>("projects-page", 0.1);
 
   if (projects.length === 0) {
     redirect("/");
   }
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            trackSectionView("projects-page");
-            observer.disconnect();
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (mainRef.current) observer.observe(mainRef.current);
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <main ref={mainRef} id="main-content" className="flex-1 min-h-screen pt-24 pb-20">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6">
+    <main ref={mainRef} id="main-content" className="relative flex-1 min-h-screen overflow-hidden pt-24 pb-20">
+      <div className="aurora-a absolute -top-20 right-0 h-96 w-96 sm:h-[32rem] sm:w-[32rem] rounded-full pointer-events-none" aria-hidden="true" />
 
-        <div className="mb-12">
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
+
+        <Reveal className="mb-10 sm:mb-14">
           <Button
             variant="ghost"
-            size="sm"
+            size="lg"
             asChild
-            className="gap-2 text-muted-foreground hover:text-foreground mb-6 -ml-2"
+            className="mb-6 -ml-2 gap-2 text-muted-foreground hover:text-foreground"
           >
             <Link href="/">
-              <ArrowLeft className="h-4 w-4" />
+              <ArrowLeft />
               Back to Home
             </Link>
           </Button>
 
-          <span className="block text-sm font-mono font-medium text-primary tracking-[0.18em] uppercase mb-3">
+          <span className="mb-3 flex items-center gap-3 font-mono text-sm font-medium uppercase tracking-[0.18em] text-primary">
+            <span className="text-muted-foreground" aria-hidden="true">{"//"}</span>
             All Projects
           </span>
-          <h1 className="font-display text-4xl sm:text-5xl font-extrabold text-foreground tracking-tight leading-[0.95] mb-2">
+          <h1 className="font-mono text-3xl sm:text-5xl font-bold tracking-tight leading-[1.05] text-foreground">
             Things I&apos;ve Built
           </h1>
-        </div>
+        </Reveal>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {projects.map((project, index) => (
             <ProjectCard key={project.id} project={project} index={index} />
           ))}
