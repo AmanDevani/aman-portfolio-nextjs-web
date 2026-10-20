@@ -30,18 +30,18 @@ export default function SocialLink({ socialLink, personName }: SocialLinkProps) 
       <HoverCardTrigger asChild>
         <Button
           variant="outline"
-          size="sm"
+          size="lg"
           asChild
-          className="gap-2 border-border hover:border-primary/40 hover:bg-secondary"
+          className="h-10 gap-2 px-4 hover:border-primary/40"
           onClick={() => trackSocialLinkClick(socialLink.platform, socialLink.url)}
         >
           <a href={socialLink.url} target="_blank" rel="noopener noreferrer">
-            <IconComponent className="h-3.5 w-3.5" />
+            <IconComponent />
             {socialLink.platform}
           </a>
         </Button>
       </HoverCardTrigger>
-      <HoverCardContent className="w-52 bg-card border-border text-xs text-muted-foreground shadow-md">
+      <HoverCardContent className="w-52 text-xs text-muted-foreground">
         <p>Visit {personName} on {socialLink.platform}</p>
       </HoverCardContent>
     </HoverCard>
