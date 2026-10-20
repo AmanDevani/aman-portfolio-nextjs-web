@@ -1,0 +1,149 @@
+/*
+ * THEME — single source of truth for every colour on the site.
+ *
+ * Rules:
+ *  - Components never use literal colours (hex / rgb / named / palette classes
+ *    like bg-emerald-500). They use semantic utilities: bg-primary,
+ *    text-muted-foreground, border-border, ring-ring, etc.
+ *  - To re-skin the site, edit only the values in :root (light) and .dark.
+ *  - Values are plain hex / rgba so the OG image route can read this file too.
+ *
+ * Palette: "Ember & Ink" — coral primary + periwinkle accent on neutral near-black (dark) and warm cream (light).
+ */
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Decorative tokens, usable as bg-glow-primary, from-gradient-from, … */
+  --color-glow-primary: var(--glow-primary);
+  --color-glow-accent: var(--glow-accent);
+  --color-gradient-from: var(--gradient-from);
+  --color-gradient-to: var(--gradient-to);
+
+  --font-sans: var(--font-plex-sans);
+  --font-mono: var(--font-jetbrains-mono);
+  --font-display: var(--font-jetbrains-mono);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+/* ─── Light ─── */
+:root {
+  --background: #fbf6ee;
+  --foreground: #1a1325;
+  --card: #ffffff;
+  --card-foreground: #1a1325;
+  --popover: #ffffff;
+  --popover-foreground: #1a1325;
+  --primary: #c2410c;
+  --primary-foreground: #ffffff;
+  --secondary: #f1e8d9;
+  --secondary-foreground: #1a1325;
+  --muted: #f1e8d9;
+  --muted-foreground: #5d5170;
+  --accent: #6d28d9;
+  --accent-foreground: #ffffff;
+  --destructive: #b91c1c;
+  --border: #e6dac6;
+  --input: #e6dac6;
+  --ring: #c2410c;
+  --radius: 0.75rem;
+
+  --chart-1: #c2410c;
+  --chart-2: #6d28d9;
+  --chart-3: #be185d;
+  --chart-4: #d97706;
+  --chart-5: #ea580c;
+
+  --sidebar: #f5ecdd;
+  --sidebar-foreground: #1a1325;
+  --sidebar-primary: #c2410c;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f1e8d9;
+  --sidebar-accent-foreground: #1a1325;
+  --sidebar-border: #e6dac6;
+  --sidebar-ring: #c2410c;
+
+  --glow-primary: rgba(194, 65, 12, 0.18);
+  --glow-accent: rgba(109, 40, 217, 0.14);
+  --gradient-from: #c2410c;
+  --gradient-to: #be185d;
+}
+
+/* ─── Dark (default) ─── */
+.dark {
+  --background: #0b0b0f;
+  --foreground: #ececf1;
+  --card: #131318;
+  --card-foreground: #ececf1;
+  --popover: #17171d;
+  --popover-foreground: #ececf1;
+  --primary: #ff8f5a;
+  --primary-foreground: #1c0e06;
+  --secondary: #1b1b22;
+  --secondary-foreground: #ececf1;
+  --muted: #1b1b22;
+  --muted-foreground: #9b9bab;
+  --accent: #8ea2ff;
+  --accent-foreground: #0c1030;
+  --destructive: #f87171;
+  --border: rgba(255, 255, 255, 0.09);
+  --input: rgba(255, 255, 255, 0.14);
+  --ring: #ff8f5a;
+
+  --chart-1: #ff8f5a;
+  --chart-2: #8ea2ff;
+  --chart-3: #ffb86b;
+  --chart-4: #b4a0ff;
+  --chart-5: #ff7a90;
+
+  --sidebar: #131318;
+  --sidebar-foreground: #ececf1;
+  --sidebar-primary: #ff8f5a;
+  --sidebar-primary-foreground: #1c0e06;
+  --sidebar-accent: #1b1b22;
+  --sidebar-accent-foreground: #ececf1;
+  --sidebar-border: rgba(255, 255, 255, 0.09);
+  --sidebar-ring: #ff8f5a;
+
+  --glow-primary: rgba(255, 143, 90, 0.16);
+  --glow-accent: rgba(142, 162, 255, 0.16);
+  --gradient-from: #ff8f5a;
+  --gradient-to: #ffb86b;
+}

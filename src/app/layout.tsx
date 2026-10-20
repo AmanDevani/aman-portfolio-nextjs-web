@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { IBM_Plex_Sans, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { MotionConfig } from "motion/react";
 import "./globals.css";
@@ -8,21 +8,24 @@ import { personalInfo } from "@/data/personal";
 import { skillCategories } from "@/data/skills";
 
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { Toaster } from "@/components/ui/sonner";
 import Navbar from "@/components/layout/Navbar/Navbar";
 import Footer from "@/components/layout/Footer/Footer";
 import ThemeProvider from "@/components/layout/ThemeProvider";
+import GoogleAnalytics from "@/components/layout/GoogleAnalytics/GoogleAnalytics";
 import { AppProvider } from "@/context/AppContext";
 
-const inter = Inter({
-  variable: "--font-inter",
+const plexSans = IBM_Plex_Sans({
+  variable: "--font-plex-sans",
   subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
 });
 
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
   subsets: ["latin"],
-  weight: ["400", "500"],
+  display: "swap",
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
@@ -45,6 +48,10 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: personalInfo.name }],
   creator: personalInfo.name,
+  // Search Console "HTML tag" method: paste only the content="…" value into the env var
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined,
+  },
   robots: {
     index: true,
     follow: true,
@@ -79,10 +86,16 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      className={`${plexSans.variable} ${jetbrainsMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground"
+        >
+          Skip to content
+        </a>
         <ThemeProvider>
           <AppProvider>
             <TooltipProvider>
@@ -90,11 +103,13 @@ export default function RootLayout({
                 <Navbar />
                 {children}
                 <Footer />
+                <Toaster position="bottom-right" />
               </MotionConfig>
             </TooltipProvider>
           </AppProvider>
         </ThemeProvider>
         <Analytics />
+        <GoogleAnalytics />
       </body>
     </html>
   );
